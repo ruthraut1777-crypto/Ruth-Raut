@@ -1,74 +1,76 @@
-[README.md](https://github.com/user-attachments/files/30371064/README.md)
-# Neural Network Classification — Internship Portfolio
+[README .md](https://github.com/user-attachments/files/30399523/README.2.md)
+# Breast Cancer Classification using Neural Networks
 
-Two supervised deep learning projects built with **TensorFlow / Keras** as part of an internship program: one predicts tumor malignancy from clinical measurements, the other reads handwritten digits from images.
+A simple Artificial Neural Network (ANN) built with **TensorFlow / Keras** that classifies breast tumors as **Malignant** or **Benign**, based on 30 diagnostic measurements from digitized images of a fine needle aspirate (FNA).
 
 ---
 
-### 🩺 Project 1 — Breast Cancer Classification
-
-Predicts whether a tumor is **Malignant** or **Benign** from 30 diagnostic measurements.
+## Overview
 
 | | |
 |---|---|
-| Dataset | Breast Cancer Wisconsin (Diagnostic) — via `sklearn.datasets` |
+| Dataset | Breast Cancer Wisconsin (Diagnostic) — via `sklearn.datasets.load_breast_cancer()` |
 | Samples | 569 (212 malignant / 357 benign) |
+| Features | 30 numeric measurements (radius, texture, perimeter, area, smoothness, etc.) |
 | Model | `Flatten → Dense(20, ReLU) → Dense(2, Sigmoid)` |
-| Result | **96.5%** test accuracy |
-
-📁 `breast_cancer_classification/`
-- `Breast_Cancer_Classification_with_Neural_Network.ipynb` — full notebook, code + outputs
-- `Breast_Cancer_Classification_Report.docx` — write-up
+| Optimizer / Loss | Adam / Sparse Categorical Crossentropy |
+| Epochs | 10 |
+| **Test Accuracy** | **96.5%** |
 
 ---
 
-### 🔢 Project 2 — MNIST Digit Classification
+## Repository Contents
 
-Recognizes handwritten digits (0–9) from 28x28 pixel images, and classifies a custom test image.
-
-| | |
-|---|---|
-| Dataset | MNIST — via `keras.datasets` |
-| Samples | 60,000 train / 10,000 test |
-| Model | `Flatten → Dense(50, ReLU) → Dense(50, ReLU) → Dense(10, Softmax)` |
-| Result | **97.1%** test accuracy (98.9% training) |
-
-📁 `mnist_digit_classification/`
-- `MNIST_Digit_classification_using_Neural_Networks.ipynb` — full notebook, code + outputs
-- `MNIST_Project.docx` — original project brief
-- `3-digit.PNG` — sample custom image used to test the predictive system
-- `MNIST_Digit_Classification_Report.docx` — write-up
-
----
-
-### 🎞 Presentations
-
-📁 `presentations/` — 10-slide decks summarizing each project (objective, dataset, architecture, results, conclusion)
-- `Breast_Cancer_Classification_Presentation.pptx`
-- `MNIST_Digit_Classification_Presentation.pptx`
-
----
-
-## Running the notebooks
-
-Both notebooks were built and tested in **Google Colab** — no local setup required if you use Colab.
-
-To run locally instead:
-
-```bash
-pip install numpy pandas matplotlib scikit-learn tensorflow seaborn opencv-python pillow
-jupyter notebook
+```
+├── Breast_Cancer_Classification_with_Neural_Network.ipynb   # full notebook (code + outputs)
+├── Breast_Cancer_Classification_Report.docx                 # project report
+└── Breast_Cancer_Classification_Presentation.pptx           # 10-slide summary deck
 ```
 
-Then open either `.ipynb` and run all cells top to bottom. Both datasets load automatically (scikit-learn and Keras both bundle/fetch their data — no manual download needed for the cancer dataset; MNIST downloads on first run).
+---
 
-For the MNIST predictive-system cell, make sure `3-digit.PNG` is available in the working directory.
+## Project Workflow
+
+1. Load the dataset and convert it into a Pandas DataFrame
+2. Explore the data — shape, missing values, class balance
+3. Split features (X) from the target label (Y)
+4. Train/test split — 80% / 20%
+5. Standardize features using `StandardScaler`
+6. Build and train the neural network
+7. Evaluate on the test set
+8. Build a predictive system for classifying a single new sample
+
+---
+
+## How to Run
+
+No manual dataset download needed — it loads directly from scikit-learn.
+
+```bash
+pip install numpy pandas matplotlib scikit-learn tensorflow
+jupyter notebook Breast_Cancer_Classification_with_Neural_Network.ipynb
+```
+
+Run all cells top to bottom (Kernel/Runtime → Run all).
+
+---
+
+## Result Summary
+
+- **Training accuracy:** ~97.2%
+- **Validation accuracy:** ~95.7%
+- **Test accuracy:** ~96.5%
+- **Test loss:** ~0.11
+
+The model performs comparably to classical baselines (e.g. logistic regression) on this dataset, with feature standardization being the key preprocessing step for good performance.
+
+> **Note:** This model is intended as a decision-support demonstration and is not a substitute for professional medical diagnosis.
 
 ---
 
 ## Stack
 
-`Python` · `TensorFlow / Keras` · `scikit-learn` · `NumPy` · `Pandas` · `Matplotlib` · `Seaborn` · `OpenCV`
+`Python` · `TensorFlow / Keras` · `scikit-learn` · `Pandas` · `NumPy` · `Matplotlib`
 
 ---
 
